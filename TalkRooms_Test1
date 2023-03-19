@@ -1,0 +1,162 @@
+<div class="Area">
+    <textarea id="TextForSendArea"></textarea>
+    <button class="close" onclick="javascript:send()">Send</button>
+</div>
+
+<style>
+    #TextForSendArea {
+	 font-family: monospace;
+	 text-rendering: auto;
+	 color: fieldtext;
+	 letter-spacing: normal;
+	 word-spacing: normal;
+	 line-height: normal;
+	 text-transform: none;
+	 text-indent: 0px;
+	 text-shadow: none;
+	 display: inline-block;
+	 text-align: start;
+	 appearance: auto;
+	 -webkit-rtl-ordering: logical;
+	 resize: auto;
+	 cursor: pointer;
+	 white-space: pre-wrap;
+	 overflow-wrap: break-word;
+	 background-color: wheat;
+	 column-count: initial !important;
+	 box-sizing: border-box;
+	 margin: 0em;
+	 border-width: 0px;
+	 border-style: solid;
+	 border-color: -internal-light-dark(#767676, #858585);
+	 border-image: initial;
+	 padding: 2px;
+}
+/* https://developer.mozilla.org/en/docs/Web/CSS/box-shadow box-shadow: [inset?] [top] [left] [blur] [size] [color];
+ Tips: - We're setting all the blurs to 0 since we want a solid fill. - Add the inset keyword so the box-shadow is on the inside of the element - Animating the inset shadow on hover looks like the element is filling in from whatever side you specify ([top] and [left] accept negative values to become [bottom] and [right]) - Multiple shadows can be stacked - If you're animating multiple shadows, be sure to keep the same number of shadows on hover/focus as non-hover/focus (even if you have to create a transparent shadow) so the animation is smooth. Otherwise, you'll get something choppy. */
+ .fill:hover, .fill:focus {
+	 box-shadow: inset 0 0 0 2em var(--hover);
+}
+ .pulse:hover, .pulse:focus {
+	 animation: pulse 1s;
+	 box-shadow: 0 0 0 2em transparent;
+}
+ @keyframes pulse {
+	 0% {
+		 box-shadow: 0 0 0 0 var(--hover);
+	}
+}
+ .close:hover, .close:focus {
+	 box-shadow: inset -3.5em 0 0 0 var(--hover), inset 3.5em 0 0 0 var(--hover);
+}
+ .raise:hover, .raise:focus {
+	 box-shadow: 0 0.5em 0.5em -0.4em var(--hover);
+	 transform: translateY(-0.25em);
+}
+ .up:hover, .up:focus {
+	 box-shadow: inset 0 -3.25em 0 0 var(--hover);
+}
+ .slide:hover, .slide:focus {
+	 box-shadow: inset 6.5em 0 0 0 var(--hover);
+}
+ .offset {
+	 box-shadow: 0.3em 0.3em 0 0 var(--color), inset 0.3em 0.3em 0 0 var(--color);
+}
+ .offset:hover, .offset:focus {
+	 box-shadow: 0 0 0 0 var(--hover), inset 6em 3.5em 0 0 var(--hover);
+}
+ .fill {
+	 --color: #a972cb;
+	 --hover: #cb72aa;
+}
+ .pulse {
+	 --color: #ef6eae;
+	 --hover: #ef8f6e;
+}
+ .close {
+	 --color: #ff7f82;
+	 --hover: #ffdc7f;
+}
+ .raise {
+	 --color: #ffa260;
+	 --hover: #e5ff60;
+}
+ .up {
+	 --color: #e4cb58;
+	 --hover: #94e458;
+}
+ .slide {
+	 --color: #8fc866;
+	 --hover: #66c887;
+}
+ .offset {
+	 --color: #19bc8b;
+	 --hover: #1973bc;
+}
+ button {
+	 color: var(--color);
+	 transition: 0.25s;
+}
+ button:hover, button:focus {
+	 border-color: var(--hover);
+	 color: #fff;
+}
+ body {
+	 color: #fff;
+	 background: #17181c;
+	 font: 300 1em 'Fira Sans', sans-serif;
+	 justify-content: center;
+	 align-content: center;
+	 align-items: center;
+	 text-align: center;
+	 min-height: 100vh;
+	 display: flex;
+}
+ button {
+	 background: none;
+	 border: 2px solid;
+	 font: inherit;
+	 line-height: 1;
+	 margin: 0.5em;
+	 padding: 1em 2em;
+}
+ h1 {
+	 font-weight: 400;
+}
+ code {
+	 color: #e4cb58;
+	 font: inherit;
+}
+ 
+</style>
+
+<script>
+    let JSArea = document.getElementById("TextForSendArea").textContent
+
+    function FOCUS(msg, roomId){
+    fetch("https://talkrooms.ru/api/messages", {
+      "headers": {
+        "accept": "*/*",
+        "accept-language": "ru",
+        "content-type": "application/x-www-form-urlencoded; charset=UTF-8",
+        "sec-ch-ua": "\"Chromium\";v=\"110\", \"Not A(Brand\";v=\"24\", \"Microsoft Edge\";v=\"110\"",
+        "sec-ch-ua-mobile": "?0",
+        "sec-ch-ua-platform": "\"Windows\"",
+        "sec-fetch-dest": "empty",
+        "sec-fetch-mode": "cors",
+        "sec-fetch-site": "same-origin",
+        "x-requested-with": "XMLHttpRequest",
+        "cookie": document.cookie,
+        "Referer": "https://talkrooms.ru/",
+        "Referrer-Policy": "strict-origin-when-cross-origin"
+      },
+      "body": `{"room_id":${roomId},"content":"${msg}"}`,
+        
+      "method": "POST"
+    })
+}
+function send() {
+    FOCUS(JSArea, 1) 
+}
+</script>
+
