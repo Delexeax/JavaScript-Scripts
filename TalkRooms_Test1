@@ -1,162 +1,163 @@
-<div class="Area">
-    <textarea id="TextForSendArea"></textarea>
-    <button class="close" onclick="javascript:send()">Send</button>
-</div>
-
-<style>
-    #TextForSendArea {
-	 font-family: monospace;
-	 text-rendering: auto;
-	 color: fieldtext;
-	 letter-spacing: normal;
-	 word-spacing: normal;
-	 line-height: normal;
-	 text-transform: none;
-	 text-indent: 0px;
-	 text-shadow: none;
-	 display: inline-block;
-	 text-align: start;
-	 appearance: auto;
-	 -webkit-rtl-ordering: logical;
-	 resize: auto;
-	 cursor: pointer;
-	 white-space: pre-wrap;
-	 overflow-wrap: break-word;
-	 background-color: wheat;
-	 column-count: initial !important;
-	 box-sizing: border-box;
-	 margin: 0em;
-	 border-width: 0px;
-	 border-style: solid;
-	 border-color: -internal-light-dark(#767676, #858585);
-	 border-image: initial;
-	 padding: 2px;
-}
-/* https://developer.mozilla.org/en/docs/Web/CSS/box-shadow box-shadow: [inset?] [top] [left] [blur] [size] [color];
- Tips: - We're setting all the blurs to 0 since we want a solid fill. - Add the inset keyword so the box-shadow is on the inside of the element - Animating the inset shadow on hover looks like the element is filling in from whatever side you specify ([top] and [left] accept negative values to become [bottom] and [right]) - Multiple shadows can be stacked - If you're animating multiple shadows, be sure to keep the same number of shadows on hover/focus as non-hover/focus (even if you have to create a transparent shadow) so the animation is smooth. Otherwise, you'll get something choppy. */
- .fill:hover, .fill:focus {
-	 box-shadow: inset 0 0 0 2em var(--hover);
-}
- .pulse:hover, .pulse:focus {
-	 animation: pulse 1s;
-	 box-shadow: 0 0 0 2em transparent;
-}
- @keyframes pulse {
-	 0% {
-		 box-shadow: 0 0 0 0 var(--hover);
-	}
-}
- .close:hover, .close:focus {
-	 box-shadow: inset -3.5em 0 0 0 var(--hover), inset 3.5em 0 0 0 var(--hover);
-}
- .raise:hover, .raise:focus {
-	 box-shadow: 0 0.5em 0.5em -0.4em var(--hover);
-	 transform: translateY(-0.25em);
-}
- .up:hover, .up:focus {
-	 box-shadow: inset 0 -3.25em 0 0 var(--hover);
-}
- .slide:hover, .slide:focus {
-	 box-shadow: inset 6.5em 0 0 0 var(--hover);
-}
- .offset {
-	 box-shadow: 0.3em 0.3em 0 0 var(--color), inset 0.3em 0.3em 0 0 var(--color);
-}
- .offset:hover, .offset:focus {
-	 box-shadow: 0 0 0 0 var(--hover), inset 6em 3.5em 0 0 var(--hover);
-}
- .fill {
-	 --color: #a972cb;
-	 --hover: #cb72aa;
-}
- .pulse {
-	 --color: #ef6eae;
-	 --hover: #ef8f6e;
-}
- .close {
-	 --color: #ff7f82;
-	 --hover: #ffdc7f;
-}
- .raise {
-	 --color: #ffa260;
-	 --hover: #e5ff60;
-}
- .up {
-	 --color: #e4cb58;
-	 --hover: #94e458;
-}
- .slide {
-	 --color: #8fc866;
-	 --hover: #66c887;
-}
- .offset {
-	 --color: #19bc8b;
-	 --hover: #1973bc;
-}
- button {
-	 color: var(--color);
-	 transition: 0.25s;
-}
- button:hover, button:focus {
-	 border-color: var(--hover);
-	 color: #fff;
-}
- body {
-	 color: #fff;
-	 background: #17181c;
-	 font: 300 1em 'Fira Sans', sans-serif;
-	 justify-content: center;
-	 align-content: center;
-	 align-items: center;
-	 text-align: center;
-	 min-height: 100vh;
-	 display: flex;
-}
- button {
-	 background: none;
-	 border: 2px solid;
-	 font: inherit;
-	 line-height: 1;
-	 margin: 0.5em;
-	 padding: 1em 2em;
-}
- h1 {
-	 font-weight: 400;
-}
- code {
-	 color: #e4cb58;
-	 font: inherit;
-}
- 
-</style>
-
-<script>
-    let JSArea = document.getElementById("TextForSendArea").textContent
-
-    function FOCUS(msg, roomId){
-    fetch("https://talkrooms.ru/api/messages", {
-      "headers": {
-        "accept": "*/*",
-        "accept-language": "ru",
-        "content-type": "application/x-www-form-urlencoded; charset=UTF-8",
-        "sec-ch-ua": "\"Chromium\";v=\"110\", \"Not A(Brand\";v=\"24\", \"Microsoft Edge\";v=\"110\"",
-        "sec-ch-ua-mobile": "?0",
-        "sec-ch-ua-platform": "\"Windows\"",
-        "sec-fetch-dest": "empty",
-        "sec-fetch-mode": "cors",
-        "sec-fetch-site": "same-origin",
-        "x-requested-with": "XMLHttpRequest",
-        "cookie": document.cookie,
-        "Referer": "https://talkrooms.ru/",
-        "Referrer-Policy": "strict-origin-when-cross-origin"
-      },
-      "body": `{"room_id":${roomId},"content":"${msg}"}`,
-        
-      "method": "POST"
-    })
-}
-function send() {
-    FOCUS(JSArea, 1) 
-}
-</script>
-
+document.write('<div class="Area">');
+document.write('    <textarea id="TextForSendArea"></textarea>');
+document.write('    <button class="close" onclick="javascript:send()">Send</button>');
+document.write('</div>');
+document.write('');
+document.write('<style>');
+document.write('    #TextForSendArea {');
+document.write('	 font-family: monospace;');
+document.write('	 text-rendering: auto;');
+document.write('	 color: fieldtext;');
+document.write('	 letter-spacing: normal;');
+document.write('	 word-spacing: normal;');
+document.write('	 line-height: normal;');
+document.write('	 text-transform: none;');
+document.write('	 text-indent: 0px;');
+document.write('	 text-shadow: none;');
+document.write('	 display: inline-block;');
+document.write('	 text-align: start;');
+document.write('	 appearance: auto;');
+document.write('	 -webkit-rtl-ordering: logical;');
+document.write('	 resize: auto;');
+document.write('	 cursor: pointer;');
+document.write('	 white-space: pre-wrap;');
+document.write('	 overflow-wrap: break-word;');
+document.write('	 background-color: wheat;');
+document.write('	 column-count: initial !important;');
+document.write('	 box-sizing: border-box;');
+document.write('	 margin: 0em;');
+document.write('	 border-width: 0px;');
+document.write('	 border-style: solid;');
+document.write('	 border-color: -internal-light-dark(#767676, #858585);');
+document.write('	 border-image: initial;');
+document.write('	 padding: 2px;');
+document.write('}');
+document.write('/* https://developer.mozilla.org/en/docs/Web/CSS/box-shadow box-shadow: [inset?] [top] [left] [blur] [size] [color];');
+document.write(' Tips: - We\'re setting all the blurs to 0 since we want a solid fill. - Add the inset keyword so the box-shadow is on the inside of the element - Animating the inset shadow on hover looks like the element is filling in from whatever side you specify ([top] and [left] accept negative values to become [bottom] and [right]) - Multiple shadows can be stacked - If you\'re animating multiple shadows, be sure to keep the same number of shadows on hover/focus as non-hover/focus (even if you have to create a transparent shadow) so the animation is smooth. Otherwise, you\'ll get something choppy. */');
+document.write(' .fill:hover, .fill:focus {');
+document.write('	 box-shadow: inset 0 0 0 2em var(--hover);');
+document.write('}');
+document.write(' .pulse:hover, .pulse:focus {');
+document.write('	 animation: pulse 1s;');
+document.write('	 box-shadow: 0 0 0 2em transparent;');
+document.write('}');
+document.write(' @keyframes pulse {');
+document.write('	 0% {');
+document.write('		 box-shadow: 0 0 0 0 var(--hover);');
+document.write('	}');
+document.write('}');
+document.write(' .close:hover, .close:focus {');
+document.write('	 box-shadow: inset -3.5em 0 0 0 var(--hover), inset 3.5em 0 0 0 var(--hover);');
+document.write('}');
+document.write(' .raise:hover, .raise:focus {');
+document.write('	 box-shadow: 0 0.5em 0.5em -0.4em var(--hover);');
+document.write('	 transform: translateY(-0.25em);');
+document.write('}');
+document.write(' .up:hover, .up:focus {');
+document.write('	 box-shadow: inset 0 -3.25em 0 0 var(--hover);');
+document.write('}');
+document.write(' .slide:hover, .slide:focus {');
+document.write('	 box-shadow: inset 6.5em 0 0 0 var(--hover);');
+document.write('}');
+document.write(' .offset {');
+document.write('	 box-shadow: 0.3em 0.3em 0 0 var(--color), inset 0.3em 0.3em 0 0 var(--color);');
+document.write('}');
+document.write(' .offset:hover, .offset:focus {');
+document.write('	 box-shadow: 0 0 0 0 var(--hover), inset 6em 3.5em 0 0 var(--hover);');
+document.write('}');
+document.write(' .fill {');
+document.write('	 --color: #a972cb;');
+document.write('	 --hover: #cb72aa;');
+document.write('}');
+document.write(' .pulse {');
+document.write('	 --color: #ef6eae;');
+document.write('	 --hover: #ef8f6e;');
+document.write('}');
+document.write(' .close {');
+document.write('	 --color: #ff7f82;');
+document.write('	 --hover: #ffdc7f;');
+document.write('}');
+document.write(' .raise {');
+document.write('	 --color: #ffa260;');
+document.write('	 --hover: #e5ff60;');
+document.write('}');
+document.write(' .up {');
+document.write('	 --color: #e4cb58;');
+document.write('	 --hover: #94e458;');
+document.write('}');
+document.write(' .slide {');
+document.write('	 --color: #8fc866;');
+document.write('	 --hover: #66c887;');
+document.write('}');
+document.write(' .offset {');
+document.write('	 --color: #19bc8b;');
+document.write('	 --hover: #1973bc;');
+document.write('}');
+document.write(' button {');
+document.write('	 color: var(--color);');
+document.write('	 transition: 0.25s;');
+document.write('}');
+document.write(' button:hover, button:focus {');
+document.write('	 border-color: var(--hover);');
+document.write('	 color: #fff;');
+document.write('}');
+document.write(' body {');
+document.write('	 color: #fff;');
+document.write('	 background: #17181c;');
+document.write('	 font: 300 1em \'Fira Sans\', sans-serif;');
+document.write('	 justify-content: center;');
+document.write('	 align-content: center;');
+document.write('	 align-items: center;');
+document.write('	 text-align: center;');
+document.write('	 min-height: 100vh;');
+document.write('	 display: flex;');
+document.write('}');
+document.write(' button {');
+document.write('	 background: none;');
+document.write('	 border: 2px solid;');
+document.write('	 font: inherit;');
+document.write('	 line-height: 1;');
+document.write('	 margin: 0.5em;');
+document.write('	 padding: 1em 2em;');
+document.write('}');
+document.write(' h1 {');
+document.write('	 font-weight: 400;');
+document.write('}');
+document.write(' code {');
+document.write('	 color: #e4cb58;');
+document.write('	 font: inherit;');
+document.write('}');
+document.write(' ');
+document.write('</style>');
+document.write('');
+document.write('<script>');
+document.write('    let JSArea = document.getElementById("TextForSendArea").textContent');
+document.write('');
+document.write('    function FOCUS(msg, roomId){');
+document.write('    fetch("https://talkrooms.ru/api/messages", {');
+document.write('      "headers": {');
+document.write('        "accept": "*/*",');
+document.write('        "accept-language": "ru",');
+document.write('        "content-type": "application/x-www-form-urlencoded; charset=UTF-8",');
+document.write('        "sec-ch-ua": "\\"Chromium\\";v=\\"110\\", \\"Not A(Brand\\";v=\\"24\\", \\"Microsoft Edge\\";v=\\"110\\"",');
+document.write('        "sec-ch-ua-mobile": "?0",');
+document.write('        "sec-ch-ua-platform": "\\"Windows\\"",');
+document.write('        "sec-fetch-dest": "empty",');
+document.write('        "sec-fetch-mode": "cors",');
+document.write('        "sec-fetch-site": "same-origin",');
+document.write('        "x-requested-with": "XMLHttpRequest",');
+document.write('        "cookie": document.cookie,');
+document.write('        "Referer": "https://talkrooms.ru/",');
+document.write('        "Referrer-Policy": "strict-origin-when-cross-origin"');
+document.write('      },');
+document.write('      "body": `{"room_id":${roomId},"content":"${msg}"}`,');
+document.write('        ');
+document.write('      "method": "POST"');
+document.write('    })');
+document.write('}');
+document.write('function send() {');
+document.write('    FOCUS(JSArea, 1) ');
+document.write('}');
+document.write('</script>');
+document.write('');
+document.write('');
